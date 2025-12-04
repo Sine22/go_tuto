@@ -19,7 +19,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'mike', keyFileVariable: 'FILENAME', usernameVariable: 'USERNAME')]) {
-                sh 'scp -o StrictHostKeyChecking=no main ${USERNAME}@target:~ -i ${FILENAME}' 
+                sh 'scp -o StrictHostKeyChecking=no -i ${FILENAME} main ${USERNAME}@target:~ ' 
               }    
             }
         }
