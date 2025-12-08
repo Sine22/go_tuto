@@ -20,8 +20,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'mykey', keyFileVariable: 'FILENAME', usernameVariable: 'USERNAME')]) {
-                sh 'scp -o StrictHostKeyChecking=no -i ${FILENAME} main ${USERNAME}@target:' 
-                // sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook --inventory hosts.ini --key-file ${FILENAME} playbook.yaml'
+                // sh 'scp -o StrictHostKeyChecking=no -i ${FILENAME} main ${USERNAME}@target:' 
+                sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook --inventory hosts.ini --key-file ${FILENAME} playbook.yaml'
               }
             }
          }
