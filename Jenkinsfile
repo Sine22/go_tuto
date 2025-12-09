@@ -30,11 +30,6 @@ pipeline {
                     sh "docker build . --tag myapp"
               }
          }
-         stage('Build Docker Image') {
-                steps {
-                    sh "docker build . --tag myapp"
-              }
-         } 
         stage('Docker Run Image') {
                 steps {
                     withCredentials([sshUserPrivateKey(credentialsId: 'mykey', keyFileVariable: 'FILENAME', usernameVariable: 'USERNAME')]) {
