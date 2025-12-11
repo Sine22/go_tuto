@@ -27,7 +27,8 @@ pipeline {
         //  }
         stage('Build Docker Image') {
                 steps {
-                    sh "docker build . --tag myapp"
+                    // sh "docker build . --tag myapp"
+                    sh "docker build -t ttl.sh/myapp:2h ."
               }
          }
         stage('Docker Run Image') {
