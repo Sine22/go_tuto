@@ -37,12 +37,12 @@ pipeline {
                     sh "docker push ttl.sh/myapp:2h"
               }
          }
-        stage('Docker Run Image') {
+        stage('Deploy to Kubernetes') {
                 steps {
-                    withCredentials([sshUserPrivateKey(credentialsId: 'mykey', keyFileVariable: 'FILENAME', usernameVariable: 'USERNAME')]) {
-                    sh "ssh -o StrictHostKeyChecking=no -i ${FILENAME} ${USERNAME}@docker 'docker stop myapp || true'"
-                    sh "ssh -o StrictHostKeyChecking=no -i ${FILENAME} ${USERNAME}@docker 'docker rm myapp || true'"           
-                    sh "ssh -o StrictHostKeyChecking=no -i ${FILENAME} ${USERNAME}@docker 'docker run --name myapp --pull always -d -p 4444:4444 ttl.sh/myapp:2h'"   
+                    withKubeConfig([credentialsId: 'myapikey' , serverUrl: 'https://kubernetes:6443']){
+                        // sh'kubectl apply -f pod.yaml'
+                        sh'kubectl apply -f deployment.yaml'
+                        }
                    }
               }
          }
