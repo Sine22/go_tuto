@@ -21,7 +21,7 @@ pipeline {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'mykey', keyFileVariable: 'FILENAME', usernameVariable: 'USERNAME')]) {
                 sh 'scp -o StrictHostKeyChecking=no -i ${FILENAME} main ${USERNAME}@18.143.194.166 "sudo systemctl stop myapp" || true' 
-                sh 'scp -o StrictHostKeyChecking=no -i ${FILENAME} main ${USERNAME}@18.143.194.166:' 
+                sh 'scp -o StrictHostKeyChecking=no -i ${FILENAME} main ${USERNAME}@18.143.194.166' 
                 // sh 'ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook --inventory hosts.ini --key-file ${FILENAME} playbook.yaml'
               }
             }
