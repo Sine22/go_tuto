@@ -40,7 +40,7 @@ pipeline {
           steps {
               withCredentials([sshUserPrivateKey(credentialsId: 'mykey', keyFileVariable: 'FILENAME', usernameVariable: 'USERNAME')]) {
                 sh 'ssh -o StrictHostKeyChecking=no -i ${FILENAME} ${USERNAME}@13.251.114.108 "sudo systemctl stop myapp" || true' 
-                sh 'scp -o StrictHostKeyChecking=no -i ${FILENAME} main ${USERNAME}@13.251.114.108'
+                sh 'scp -o StrictHostKeyChecking=no -i ${FILENAME} main ${USERNAME}@13.251.114.108:'
             }
           }
         }
