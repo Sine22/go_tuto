@@ -36,4 +36,4 @@ spec:
     spec:
       containers:
       - name: myapp
-        image: ttl.sh/myapp:2h
+        image: ttl.sh/myapp2:1h
