@@ -5,4 +5,4 @@ metadata:
 spec:
   containers:
   - name: myapp
-    image: ttl.sh/myapp:2h
+    image: ttl.sh/sine:1h
